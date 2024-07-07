@@ -1,10 +1,7 @@
-import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-from sklearn.preprocessing import StandardScaler
 from load_data import read_ecommerce_date, explore_data
-from process_data import preprocess_data
+from process_data import preprocess_data, analyze_data
+from visualize_data import visualize_chart
 
 
 def main():
@@ -18,10 +15,15 @@ def main():
 
         # 데이터 전처리
         cleaned_date = preprocess_data(data)
-        print("전처리 후 데이터 미리보기 : ")
-        print(cleaned_date.head())
-        print("전처리 후 데이터 데이터 정보 : ")
-        print(cleaned_date.info)
+
+        analyzed_data = analyze_data(cleaned_date)
+
+        visualize_chart(analyzed_data)
+
+        # print("전처리 후 데이터 미리보기 : ")
+        # print(cleaned_date.head())
+        # print("전처리 후 데이터 데이터 정보 : ")
+        # print(cleaned_date.info)
 
     else:
         print("데이터 로드 실패. 프로그램을 종료합니다.")
